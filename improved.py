@@ -28,24 +28,24 @@ t_0 = 0
 init_data = np.array([5, 3])
 
 # starting RK45 integration method
-system1 = integrate.RK45(model, t_0, init_data, 1000, 0.001)
+sys_1 = integrate.RK45(model, t_0, init_data, 1000, 0.001)
 
 # storing initial data 
-solnX = [system1.y[0]]
-solnY = [system1.y[1]]
+sol_x = [sys_1.y[0]]
+sol_y = [sys_1.y[1]]
 time = [t_0]
 
 for i in range(5000):
-    system1.step() # performing integration step
-    solnX.append(system1.y[0]) # storing the results in our solution list, y is the attribute current state
-    solnY.append(system1.y[1])
-    time.append(system1.t)
+    sys_1.step() # performing integration step
+    sol_x.append(sys_1.y[0]) # storing the results in our solution list, y is the attribute current state
+    sol_y.append(sys_1.y[1])
+    time.append(sys_1.t)
 
 plt.figure(figsize=(20, 10))
 
 # plotting results in a graph
-plt.plot(time, solnX, 'b--', label='Country A (aggressive)')
-plt.plot(time, solnY, 'r--', label='Country B (passive)')
+plt.plot(time, sol_x, 'b--', label='Country A (aggressive)')
+plt.plot(time, sol_y, 'r--', label='Country B (passive)')
 plt.ylabel('Military Expenditure (billions USD)', fontsize = 16)
 plt.xlabel('Time (years)', fontsize = 16)
 plt.legend(loc='best', fontsize = 22)
